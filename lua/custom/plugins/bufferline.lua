@@ -8,6 +8,14 @@ return {
 					mode = "tabs",
 					diagnostics = "nvim_lsp",
 				},
+				highlights = {
+					buffer_selected = {
+						italic = false,
+					},
+					tab_selected = {
+						italic = false,
+					},
+				},
 			})
 			-- Explicit tab navigation
 			vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next tab" })
