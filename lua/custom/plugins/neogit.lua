@@ -4,7 +4,9 @@ return {
     'NeogitOrg/neogit',
     dependencies = { 'sindrets/diffview.nvim' },
     config = function()
-      require('neogit').setup {}
+      require('neogit').setup {
+        graph_style = 'unicode',
+      }
 
       -- Keymaps for Neogit
       vim.keymap.set('n', '<leader>gn', ':Neogit<CR>', { desc = 'Open Neogit' })
