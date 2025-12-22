@@ -2,17 +2,8 @@ return {
   {
     'esmuellert/nvim-eslint',
     opts = {
-      codeActionOnSave = {
-        enable = true,
-        mode = 'all',
-      },
-      workingDirectories = { mode = 'auto' },
       settings = {
-        eslint = {
-          options = {
-            configFile = vim.fn.expand('~/.config/nvim/lua/custom/.eslint.config.js'),
-          },
-        },
+        format = true,
       },
     },
     config = function()

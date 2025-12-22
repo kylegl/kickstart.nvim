@@ -695,7 +695,7 @@ require('lazy').setup({
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
-        eslint = {},
+        -- eslint = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -784,7 +784,7 @@ require('lazy').setup({
           return nil
         else
             return {
-              timeout_ms = 2000,
+              timeout_ms = 500,
               lsp_format = 'fallback',
             }
         end
@@ -795,18 +795,11 @@ require('lazy').setup({
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        javascript = { 'eslint_d' },
-        typescript = { 'eslint_d' },
-        javascriptreact = { 'eslint_d' },
-        typescriptreact = { 'eslint_d' },
-        json = { 'eslint_d' },
-      },
-      formatters = {
-      eslint_d = {
-        command = 'eslint_d',
-        args = { '--fix-to-stdout', '--stdin', '--stdin-filename', '$FILENAME' },
-        stdin = true,
-      },
+        -- javascript = { 'eslint_d' },
+        -- typescript = { 'eslint_d' },
+        -- javascriptreact = { 'eslint_d' },
+        -- typescriptreact = { 'eslint_d' },
+        -- json = { 'eslint_d' },
       },
     },
   },
