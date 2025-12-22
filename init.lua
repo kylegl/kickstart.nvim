@@ -1047,3 +1047,4 @@ require('lazy').setup({
 -- [[ Load personal configuration ]]
 require 'custom.options'
 require 'custom.keymaps'
+require 'custom.autocmds'

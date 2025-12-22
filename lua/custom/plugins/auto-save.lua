@@ -37,7 +37,7 @@ return {
         cancel_deferred_save = { 'InsertEnter' },
       },
       condition = on_save,
-      noautocmd = true,
+      noautocmd = false,
       debounce_delay = 2000,
     },
   },
