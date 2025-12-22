@@ -761,7 +761,7 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
+    event = { 'BufReadPre', 'BufNewFile' },
     cmd = { 'ConformInfo' },
     keys = {
       {
@@ -783,10 +783,10 @@ require('lazy').setup({
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
+            return {
+              timeout_ms = 2000,
+              lsp_format = 'fallback',
+            }
         end
       end,
       formatters_by_ft = {
@@ -795,11 +795,18 @@ require('lazy').setup({
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        javascript = { 'eslint' },
-        typescript = { 'eslint' },
-        javascriptreact = { 'eslint' },
-        typescriptreact = { 'eslint' },
-        json = { 'eslint' },
+        javascript = { 'eslint_d' },
+        typescript = { 'eslint_d' },
+        javascriptreact = { 'eslint_d' },
+        typescriptreact = { 'eslint_d' },
+        json = { 'eslint_d' },
+      },
+      formatters = {
+      eslint_d = {
+        command = 'eslint_d',
+        args = { '--fix-to-stdout', '--stdin', '--stdin-filename', '$FILENAME' },
+        stdin = true,
+      },
       },
     },
   },
