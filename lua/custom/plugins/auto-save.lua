@@ -19,6 +19,12 @@ local function on_save()
     return false
   end
 
+  -- Don't save when in harpoon menu buffer
+  local buf_name = vim.api.nvim_buf_get_name(0)
+  if buf_name:match('harpoon') or vim.bo.filetype == 'harpoon' then
+    return false
+  end
+
   return true
 end
 

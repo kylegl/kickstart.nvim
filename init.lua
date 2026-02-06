@@ -690,6 +690,35 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
+      -- Get the path to vue-language-server (assumes installed via Mason)
+      -- For Mason v2, use this path (MASON env var is empty in kickstart setup)
+      local vue_language_server_path = vim.fn.stdpath('data') .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
+
+      -- Filetypes for ts_ls (matches official Vue Language Tools instructions exactly)
+      local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+
+      -- Configure Vue TypeScript plugin for ts_ls
+      local vue_plugin = {
+        name = '@vue/typescript-plugin',
+        location = vue_language_server_path,
+        languages = { 'vue' },
+        configNamespace = 'typescript',
+      }
+
+      local ts_ls_config = {
+        init_options = {
+          plugins = {
+            vue_plugin,
+          },
+        },
+        filetypes = tsserver_filetypes,
+      }
+
+      -- nvim-lspconfig has built-in on_init handler for vue_ls (no custom handler needed)
+      local vue_ls_config = {}
+
+      -- Configuration for other LSP servers (using old API for compatibility)
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -702,10 +731,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {
-          filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
-        },
-        --
+        -- Note: ts_ls and vue_ls are configured below using nvim 0.11 API
 
         lua_ls = {
           -- cmd = { ... },
@@ -723,6 +749,12 @@ require('lazy').setup({
         },
       }
 
+      -- Configure Vue TypeScript servers using Neovim 0.11 API (for proper Vue support)
+      -- This follows the official Vue Language Tools instructions for nvim 0.11+
+      vim.lsp.config('ts_ls', ts_ls_config)
+      vim.lsp.config('vue_ls', vue_ls_config)
+      vim.lsp.enable({ 'ts_ls', 'vue_ls' })
+
       -- Ensure the servers and tools above are installed
       --
       -- To check the current status of installed tools and/or manually install
@@ -739,6 +771,8 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'vue-language-server', -- Vue Language Server (required for Vue support)
+        'typescript-language-server', -- TypeScript Language Server (required for ts_ls)
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

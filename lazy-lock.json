@@ -16,6 +16,7 @@
   "mini.nvim": { "branch": "main", "commit": "6acb62618e2e7f1bf4f2e96e77a562ec80696f5e" },
   "neogit": { "branch": "master", "commit": "d8bf9102692250193b855acd9025a826f1af2729" },
   "nvim-autopairs": { "branch": "master", "commit": "c2a0dd0d931d0fb07665e1fedb1ea688da3b80b4" },
+  "nvim-baml-syntax": { "branch": "main", "commit": "f80ba1375b3d78da0e6e3aa467a98c0a1e700f8b" },
   "nvim-eslint": { "branch": "main", "commit": "491deac6d89a5c51013fa71b63c3cc093db15dde" },
   "nvim-lspconfig": { "branch": "master", "commit": "d20d83b3f24f5884da73a9fc92fdc47e778b8d0d" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
