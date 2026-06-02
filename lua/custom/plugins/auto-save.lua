@@ -43,7 +43,11 @@ return {
         cancel_deferred_save = { 'InsertEnter' },
       },
       condition = on_save,
-      noautocmd = false,
+      -- Do not execute autocmds when saving
+      -- This fixes the undo/redo issue - without it, saving creates a new undo
+      -- entry which clears the redo buffer
+      -- Trade-off: this disables auto-format on save
+      noautocmd = true,
       debounce_delay = 2000,
     },
   },
