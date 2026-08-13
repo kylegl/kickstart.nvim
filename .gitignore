@@ -4,3 +4,6 @@ test.sh
 nvim
 
 spell/
+
+# Machine-local Neovim overrides
+lua/custom/local.lua

@@ -93,19 +93,6 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
-vim.g.clipboard = {
-  name = 'win32yank-wsl',
-  copy = {
-    ['+'] = '/home/linkdevk/bin/win32yank.exe -i --crlf',
-    ['*'] = '/home/linkdevk/bin/win32yank.exe -i --crlf',
-  },
-  paste = {
-    ['+'] = '/home/linkdevk/bin/win32yank.exe -o --lf',
-    ['*'] = '/home/linkdevk/bin/win32yank.exe -o --lf',
-  },
-  cache_enabled = 0,
-}
-
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -1082,3 +1069,4 @@ require('lazy').setup({
 require 'custom.options'
 require 'custom.keymaps'
 require 'custom.autocmds'
+pcall(require, 'custom.local')
